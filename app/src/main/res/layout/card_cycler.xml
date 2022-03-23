@@ -23,15 +23,14 @@
 
     <TextView
         android:id="@+id/noteTitleText"
-        android:layout_toEndOf="@id/noteIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textSize="18sp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/noteIcon"
         android:textAlignment="center"
-        />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/noteContentText"
@@ -40,6 +39,7 @@
         android:layout_below="@id/noteIcon"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:padding="10dp"
         android:background="@drawable/border2" />
 
     <ImageButton
@@ -64,8 +64,8 @@
         android:id="@+id/editNoteButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
         android:layout_below="@id/noteContentText"
+        android:layout_marginEnd="20dp"
         android:layout_toStartOf="@id/deleteButton"
         android:background="@drawable/note_edit"
         android:contentDescription="@string/note_done_button" />
