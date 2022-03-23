@@ -33,6 +33,12 @@ class AdapterNote(private val noteList:List<Note>,private val context: Context, 
         val note:Note = noteList[position]
         holder.textTitle.text = note.noteName
         holder.textSubject.text = note.noteDetails
+        holder.deleteNoteButton.setOnClickListener(View.OnClickListener {
+            adapterOnClickListener.onClickSendDelete(note)
+        })
+        holder.editNoteButton.setOnClickListener(View.OnClickListener {
+            adapterOnClickListener.onClickSendEdit(note)
+        })
     }
 
     override fun getItemCount(): Int {
