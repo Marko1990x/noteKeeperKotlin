@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import markodunovic.web.app.notekeeper.adapter.AdapterNote
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
 
         val sharedPrefs = SharedPrefs.getNoteNumber()
         Log.d("sharedPrefs", "onCreate: $sharedPrefs")
-        if (sharedPrefs == 0){
+        if (sharedPrefs == 0) {
             noteViewModel?.insertNote(
                 Note(
                     0, "Welcome",
@@ -76,11 +75,11 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
 
     override fun onClickSendEdit(note: Note) {
         val myDialog2 = MyDialog2(this, note)
-        myDialog2.show(supportFragmentManager,"custom_diag2")
+        myDialog2.show(supportFragmentManager, "custom_diag2")
     }
 
     override fun onClickSendDelete(note: Note) {
-       noteViewModel?.deleteNoteByid(note.id.toInt())
+        noteViewModel?.deleteNoteByid(note.id.toInt())
         adapter.notifyDataSetChanged()
     }
 
@@ -92,7 +91,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
+        when (item.itemId) {
             R.id.addNote ->
                 addNote()
             R.id.nukeNotes ->
@@ -104,25 +103,25 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
 
     private fun deleteAllNotes() {
         noteViewModel?.nukeNoteTable()
-        Toast.makeText(this,"All Notes Deleted",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "All Notes Deleted", Toast.LENGTH_SHORT).show()
         adapter.notifyDataSetChanged()
     }
 
     private fun addNote() {
-        val dialog:MyDialog = MyDialog(this)
-        dialog.show(supportFragmentManager,"custom_dia")
+        val dialog: MyDialog = MyDialog(this)
+        dialog.show(supportFragmentManager, "custom_dia")
     }
 
     override fun dialogOnClick(title: String, desc: String) {
         Log.d("Dialog", "dialogOnClick: $title $desc")
-        val note:Note = Note(0,title,desc,"",0)
+        val note: Note = Note(0, title, desc, "", 0)
         noteViewModel?.insertNote(note)
         adapter.notifyDataSetChanged()
     }
 
     override fun dialogUpdateNoteOnClick(note: Note, title: String, desc: String) {
         Log.d("SentNote", "dialogUpdateNoteOnClick: $note \n\n $title $desc")
-        noteViewModel?.updateNote(Note(note.id,title,desc,"",0))
+        noteViewModel?.updateNote(Note(note.id, title, desc, "", 0))
         adapter.notifyDataSetChanged()
     }
 

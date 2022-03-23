@@ -8,47 +8,47 @@ import markodunovic.web.app.notekeeper.App
 object NoteSingleton {
     private var noteDatabase: NoteDatabase
     private val noteDao: NoteDao
-    private var mHandler:Handler? = null
+    private var mHandler: Handler? = null
 
     init {
         noteDatabase = NoteDatabase.getInstance(context = App.appContext())
         noteDao = noteDatabase.noteDao()
     }
 
-    fun getAllNotes():LiveData<List<Note>>{
+    fun getAllNotes(): LiveData<List<Note>> {
         return noteDao.getAll()
     }
 
-    fun insert(note:Note){
+    fun insert(note: Note) {
         getRepoHandler()!!.post(Runnable {
             noteDao.insertNote(note)
         })
     }
 
-    fun deleteNoteById(id:Int){
+    fun deleteNoteById(id: Int) {
         getRepoHandler()!!.post(Runnable {
             noteDao.deleteNoteById(id)
         })
     }
 
-    fun getLastNote():Note{
+    fun getLastNote(): Note {
         return noteDao.getLastNote()
     }
 
-    fun updateNote(note: Note){
+    fun updateNote(note: Note) {
         getRepoHandler()!!.post(Runnable {
             noteDao.updateNote(note)
         })
     }
 
-    fun nukeNotes(){
+    fun nukeNotes() {
         getRepoHandler()!!.post(Runnable {
             noteDao.nukeNotes()
         })
     }
 
     private fun getRepoHandler(): Handler? {
-        if (mHandler == null){
+        if (mHandler == null) {
             val thread = HandlerThread("thread")
             thread.start()
             mHandler = Handler(thread.looper)

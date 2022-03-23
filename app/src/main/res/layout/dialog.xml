@@ -2,22 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    >
+    android:padding="10dp">
 
     <EditText
         android:id="@+id/editTextTitleDialog"
-        android:hint="@string/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/title"
         android:inputType="text" />
+
     <EditText
-        android:layout_below="@id/editTextTitleDialog"
-        android:hint="@string/description"
         android:id="@+id/editTextSubjectDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        />
+        android:layout_below="@id/editTextTitleDialog"
+        android:hint="@string/description"
+        android:inputType="text" />
 
 </RelativeLayout>

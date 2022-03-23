@@ -18,23 +18,23 @@ class NoteViewModel : ViewModel() {
         NoteSingleton.insert(note)
     }
 
-    fun deleteNotesById(id:Int){
+    fun deleteNotesById(id: Int) {
         NoteSingleton.deleteNoteById(id)
     }
 
-    fun getLastNote():Note{
+    fun getLastNote(): Note {
         return NoteSingleton.getLastNote()
     }
 
-    fun nukeNoteTable(){
+    fun nukeNoteTable() {
         NoteSingleton.nukeNotes()
     }
 
-    fun deleteNoteByid(id:Int){
+    fun deleteNoteByid(id: Int) {
         NoteSingleton.deleteNoteById(id)
     }
 
-    fun updateNote(note:Note){
+    fun updateNote(note: Note) {
         NoteSingleton.updateNote(note)
     }
 
