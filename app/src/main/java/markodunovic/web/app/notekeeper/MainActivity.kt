@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             .get(NoteViewModel::class.java)
         
         noteViewModel?.insertNote(Note(0,"test",
-            "TestNote","asdas"))
+            "TestNote","asdas",1))
         setContentView(view)
     }
 

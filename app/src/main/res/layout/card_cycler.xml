@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        />
+
+    <ImageButton
+        android:id="@+id/noteIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/note_icon"
+        android:contentDescription="@string/note_icon" />
+
+    <TextView
+        android:id="@+id/noteTitleText"
+        android:layout_toEndOf="@id/noteIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/noteContentText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/noteIcon"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/border2" />
+
+    <ImageButton
+        android:id="@+id/cardButtonDone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/noteContentText"
+        android:background="@drawable/notedone"
+        android:contentDescription="@string/note_done_button" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/noteContentText"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/note_delete"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/note_done_button" />
+
+    <ImageButton
+        android:id="@+id/editNoteButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/noteContentText"
+        android:layout_toStartOf="@id/deleteButton"
+        android:background="@drawable/note_edit"
+        android:contentDescription="@string/note_done_button" />
+
+
+</RelativeLayout>

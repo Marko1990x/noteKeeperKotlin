@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">notekeeper</string>
+    <string name="note_icon">note icon</string>
+    <string name="note_done_button">note done button</string>
 </resources>
