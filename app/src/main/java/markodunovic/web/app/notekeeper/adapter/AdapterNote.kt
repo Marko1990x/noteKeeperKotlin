@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import markodunovic.web.app.notekeeper.R
 import markodunovic.web.app.notekeeper.listener.AdapterOnClickListener
@@ -18,7 +19,7 @@ class AdapterNote(
 ) : RecyclerView.Adapter<AdapterNote.AdapterNoteViewHolder>() {
 
     class AdapterNoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageButton: ImageButton = itemView.findViewById(R.id.cardButtonDone)
+        val imageButtonDone: ImageButton = itemView.findViewById(R.id.cardButtonDone)
         val editNoteButton: ImageButton = itemView.findViewById(R.id.editNoteButton)
         val deleteNoteButton: ImageButton = itemView.findViewById(R.id.deleteButton)
         val textTitle: TextView = itemView.findViewById(R.id.noteTitleText)
@@ -41,6 +42,9 @@ class AdapterNote(
         })
         holder.editNoteButton.setOnClickListener(View.OnClickListener {
             adapterOnClickListener.onClickSendEdit(note)
+        })
+        holder.imageButtonDone.setOnClickListener(View.OnClickListener {
+            holder.textSubject.setBackgroundDrawable(AppCompatResources.getDrawable(context,R.drawable.checked_done))
         })
     }
 

@@ -5,8 +5,9 @@
       <map>
         <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/drawable/border.xml" value="0.11" />
         <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/drawable/border2.xml" value="0.2425" />
-        <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/layout/card_cycler.xml" value="0.5" />
+        <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/drawable/checked_done.xml" value="0.245" />
+        <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/layout/card_cycler.xml" value="0.33" />
         <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/layout/dialog.xml" value="0.5533596837944664" />
         <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/layout/toolbar.xml" value="0.1" />
         <entry key="..\:/Users/Marko/AndroidStudioProjects/notekeeper2/app/src/main/res/menu/toolbar.xml" value="0.75" />

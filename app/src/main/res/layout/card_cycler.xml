@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@drawable/border"
+    android:background="@drawable/border2"
     android:padding="10dp">
 
     <TextView
@@ -33,24 +34,37 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/noteContentText"
-        style="@style/TextAppearance.AppCompat.Body2"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/noteIcon"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/border2"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border"
+        >
+
+        <TextView
+            android:id="@+id/noteContentText"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/noteIcon"
+            android:ellipsize="end"
+            android:minHeight="150dp"
+            android:padding="10dp"
+            android:scrollHorizontally="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+    </androidx.core.widget.NestedScrollView>
+
 
     <ImageButton
         android:id="@+id/cardButtonDone"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@id/noteContentText"
+        android:layout_below="@id/nestedScroll"
         android:background="@drawable/notedone"
         android:contentDescription="@string/note_done_button" />
 
@@ -58,7 +72,7 @@
         android:id="@+id/deleteButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@id/noteContentText"
+        android:layout_below="@id/nestedScroll"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:background="@drawable/note_delete"
@@ -68,7 +82,7 @@
         android:id="@+id/editNoteButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@id/noteContentText"
+        android:layout_below="@id/nestedScroll"
         android:layout_marginEnd="20dp"
         android:layout_toStartOf="@id/deleteButton"
         android:background="@drawable/note_edit"

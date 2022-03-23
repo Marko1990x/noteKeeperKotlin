@@ -1,12 +1,15 @@
 package markodunovic.web.app.notekeeper
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         toolbar = view.findViewById(R.id.toolbar)
+        toolbar.setBackgroundColor(resources.getColor(R.color.black))
         setSupportActionBar(toolbar)
 
         noteViewModel = ViewModelProvider(this)
@@ -61,9 +65,6 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
         setContentView(view)
     }
 
-    private fun setButtons() {
-
-    }
 
     private fun setCycler(noteList: List<Note>?) {
         recycler = binding.cycler
@@ -102,9 +103,20 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
     }
 
     private fun deleteAllNotes() {
-        noteViewModel?.nukeNoteTable()
-        Toast.makeText(this, "All Notes Deleted", Toast.LENGTH_SHORT).show()
-        adapter.notifyDataSetChanged()
+
+        val dialog:AlertDialog.Builder = AlertDialog.Builder(this)
+        dialog.setMessage("Delete All Notes ?")
+        dialog.setCancelable(false)
+        dialog.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
+            dialogInterface.dismiss()
+        })
+        dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+            noteViewModel?.nukeNoteTable()
+            Toast.makeText(this, "All Notes Deleted", Toast.LENGTH_SHORT).show()
+            adapter.notifyDataSetChanged()
+        })
+        dialog.create()
+        dialog.show()
     }
 
     private fun addNote() {
