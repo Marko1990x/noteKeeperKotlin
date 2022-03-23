@@ -5,19 +5,24 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import markodunovic.web.app.notekeeper.adapter.AdapterNote
 import markodunovic.web.app.notekeeper.databinding.ActivityMainBinding
+import markodunovic.web.app.notekeeper.dialog.MyDialog
+import markodunovic.web.app.notekeeper.dialog.MyDialog2
 import markodunovic.web.app.notekeeper.listener.AdapterOnClickListener
+import markodunovic.web.app.notekeeper.listener.DialogOnClickListener
 import markodunovic.web.app.notekeeper.repository.room.Note
 import markodunovic.web.app.notekeeper.viewmodel.NoteViewModel
 
-class MainActivity : AppCompatActivity(), AdapterOnClickListener {
+class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickListener {
     private lateinit var binding: ActivityMainBinding
     private var noteViewModel: NoteViewModel? = null
     private lateinit var noteList: List<Note>
@@ -35,13 +40,16 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
         noteViewModel = ViewModelProvider(this)
             .get(NoteViewModel::class.java)
 
-        noteViewModel?.insertNote(
-            Note(
-                0, "test",
-                "TestNote", "asdas", 1
+        val sharedPrefs = SharedPrefs.getNoteNumber()
+        Log.d("sharedPrefs", "onCreate: $sharedPrefs")
+        if (sharedPrefs == 0){
+            noteViewModel?.insertNote(
+                Note(
+                    0, "Welcome",
+                    "Add Some Notes :)", "", 0
+                )
             )
-        )
-        setContentView(view)
+        }
 
         noteViewModel?.getAllNotes()?.observe(this, Observer {
             noteList = it
@@ -50,6 +58,12 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
             }
             setCycler(noteList)
         })
+        SharedPrefs.addWelcomeNoteNumber(1)
+        setContentView(view)
+    }
+
+    private fun setButtons() {
+
     }
 
     private fun setCycler(noteList: List<Note>?) {
@@ -61,11 +75,13 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     override fun onClickSendEdit(note: Note) {
-        Log.d(MainActivity::class.simpleName, "onClick: $note")
+        val myDialog2 = MyDialog2(this, note)
+        myDialog2.show(supportFragmentManager,"custom_diag2")
     }
 
     override fun onClickSendDelete(note: Note) {
-        Log.d(MainActivity::class.simpleName, "onClick: $note")
+       noteViewModel?.deleteNoteByid(note.id.toInt())
+        adapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -87,10 +103,28 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     private fun deleteAllNotes() {
-        Log.d("Note", "deleteAllNotes: ")
+        noteViewModel?.nukeNoteTable()
+        Toast.makeText(this,"All Notes Deleted",Toast.LENGTH_SHORT).show()
+        adapter.notifyDataSetChanged()
     }
 
     private fun addNote() {
-        Log.d("Note", "addNote: ")
+        val dialog:MyDialog = MyDialog(this)
+        dialog.show(supportFragmentManager,"custom_dia")
     }
+
+    override fun dialogOnClick(title: String, desc: String) {
+        Log.d("Dialog", "dialogOnClick: $title $desc")
+        val note:Note = Note(0,title,desc,"",0)
+        noteViewModel?.insertNote(note)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun dialogUpdateNoteOnClick(note: Note, title: String, desc: String) {
+        Log.d("SentNote", "dialogUpdateNoteOnClick: $note \n\n $title $desc")
+        noteViewModel?.updateNote(Note(note.id,title,desc,"",0))
+        adapter.notifyDataSetChanged()
+    }
+
+
 }

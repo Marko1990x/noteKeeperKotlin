@@ -22,6 +22,9 @@
         android:contentDescription="@string/note_icon" />
 
     <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         android:id="@+id/noteTitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,9 +36,12 @@
         android:textSize="18sp" />
 
     <TextView
+        style="@style/TextAppearance.AppCompat.Body2"
         android:id="@+id/noteContentText"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_below="@id/noteIcon"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
