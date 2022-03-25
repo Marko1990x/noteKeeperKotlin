@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
 import markodunovic.web.app.notekeeper.adapter.AdapterNote
 import markodunovic.web.app.notekeeper.databinding.ActivityMainBinding
 import markodunovic.web.app.notekeeper.dialog.MyDialog
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
     private lateinit var adapter: AdapterNote
     private lateinit var recycler: RecyclerView
     private lateinit var toolbar: Toolbar
+    private lateinit var firebaseAnalytics:FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
         toolbar = view.findViewById(R.id.toolbar)
         toolbar.setBackgroundColor(resources.getColor(R.color.black))
         setSupportActionBar(toolbar)
-
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         noteViewModel = ViewModelProvider(this)
             .get(NoteViewModel::class.java)
 
