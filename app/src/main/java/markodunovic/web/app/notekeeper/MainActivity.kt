@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
             noteViewModel?.insertNote(
                 Note(
                     0, "Welcome",
-                    "Add Some Notes :)", "", 0
+                    "Add Some Notes :)", "", 0,false
                 )
             )
         }
@@ -81,6 +81,11 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
 
     override fun onClickSendDelete(note: Note) {
         noteViewModel?.deleteNoteByid(note.id.toInt())
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onNoteCompleted(note: Note) {
+        noteViewModel?.updateNote(Note(note.id,note.noteName,note.noteDetails,note.noteExtra,note.notePriority,true))
         adapter.notifyDataSetChanged()
     }
 
@@ -126,14 +131,14 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener, DialogOnClickL
 
     override fun dialogOnClick(title: String, desc: String) {
         Log.d("Dialog", "dialogOnClick: $title $desc")
-        val note: Note = Note(0, title, desc, "", 0)
+        val note: Note = Note(0, title, desc, "", 0,false)
         noteViewModel?.insertNote(note)
         adapter.notifyDataSetChanged()
     }
 
     override fun dialogUpdateNoteOnClick(note: Note, title: String, desc: String) {
         Log.d("SentNote", "dialogUpdateNoteOnClick: $note \n\n $title $desc")
-        noteViewModel?.updateNote(Note(note.id, title, desc, "", 0))
+        noteViewModel?.updateNote(Note(note.id, title, desc, "", 0,false))
         adapter.notifyDataSetChanged()
     }
 

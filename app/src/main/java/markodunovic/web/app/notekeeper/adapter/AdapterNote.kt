@@ -44,8 +44,11 @@ class AdapterNote(
             adapterOnClickListener.onClickSendEdit(note)
         })
         holder.imageButtonDone.setOnClickListener(View.OnClickListener {
-            holder.textSubject.setBackgroundDrawable(AppCompatResources.getDrawable(context,R.drawable.checked_done))
+            adapterOnClickListener.onNoteCompleted(note)
         })
+        if (note.checked){
+            holder.textSubject.setBackgroundDrawable(AppCompatResources.getDrawable(context,R.drawable.checked_done))
+        }
     }
 
     override fun getItemCount(): Int {

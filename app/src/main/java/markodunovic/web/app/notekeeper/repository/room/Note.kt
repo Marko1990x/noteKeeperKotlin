@@ -10,5 +10,6 @@ data class Note(
     @ColumnInfo(name = "name") var noteName: String,
     @ColumnInfo(name = "details") var noteDetails: String,
     @ColumnInfo(name = "extra") var noteExtra: String,
-    @ColumnInfo(name = "priority") var notePriority: Int
+    @ColumnInfo(name = "priority") var notePriority: Int,
+    @ColumnInfo(name = "done") var checked:Boolean
 )
